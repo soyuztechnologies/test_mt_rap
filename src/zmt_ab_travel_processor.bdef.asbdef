@@ -1,0 +1,48 @@
+projection;
+strict ( 2 );
+use side effects;
+use draft;
+
+define behavior for ZMT_AB_TRAVEL_PROCESSOR alias Travel
+implementation in class zbp_mt_ab_t_proc unique
+{
+  use create ( augment, precheck );
+  use update ( precheck );
+  use delete;
+
+  use action Edit;
+  use action Prepare;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+
+  use action copyTravel;
+  use association _Booking { create; }
+  use association _Attachments { create; }
+}
+
+define behavior for ZMT_AB_BOOKING_PROCESSOR alias Booking
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _BookingSupplement { create; }
+}
+
+define behavior for ZMT_AB_BOOKSUPPL_PROCESSOR alias BookingSuppl
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _Booking;
+}
+
+define behavior for ZMT_AB_M_ATTACH_PROCESSOR alias Attachment
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+}

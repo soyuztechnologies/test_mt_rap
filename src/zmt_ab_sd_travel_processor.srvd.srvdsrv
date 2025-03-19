@@ -1,0 +1,14 @@
+@EndUserText.label: 'Travel Processor Service definition'
+define service ZMT_AB_SD_TRAVEL_PROCESSOR {
+  expose ZMT_AB_TRAVEL_PROCESSOR    as Travel;
+  expose ZMT_AB_BOOKING_PROCESSOR   as Booking;
+  expose ZMT_AB_BOOKSUPPL_PROCESSOR as BookingSuppl;
+  expose zmt_ab_m_attach_processor  as Attachment;
+  expose /DMO/I_Overall_Status_VH   as TravelStatus;
+  expose I_Currency                 as Currency;
+  expose /DMO/I_Customer            as Customer;
+  expose /DMO/I_Agency              as Agency;
+  expose /DMO/I_Booking_Status_VH   as BookingStatus;
+  expose /DMO/I_Connection          as Connections;
+  expose /DMO/I_Carrier             as Carrier;
+}
